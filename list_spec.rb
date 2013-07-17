@@ -32,4 +32,35 @@ describe List do
     end
   end
 
+  describe "#delete_task" do
+    it "given a list with one task, when delete_task is called, list is empty" do
+      task = mock(:task)
+      mylist = List.new('random list', [task])
+      mylist.delete_task(0)
+      mylist.tasks.should == []
+      end
+  end
+
+  describe "#completed_tasks" do
+    it "returns a list of completed tasks" do
+      task1 = mock(:task)
+      task1.stub(:complete?).and_return(true)
+      task2 = mock(:task)
+      task2.stub(:complete?).and_return(false)
+      task3 = mock(:task)
+      task3.stub(:complete?).and_return(true)
+
+      mylist = List.new('random list', [task1,task2,task3])
+      mylist.completed_tasks.should eq [task1,task3]
+    end
+  end
+
+  describe "#incomplete_tasks" do
+    it "returns a list of incomplete tasks" do
+      task = mock(:task)
+      task.stub(:complete?).and_return(false)
+      mylist = List.new('random list', [task])
+      mylist.incomplete_tasks.should eq [task]
+    end
+  end
 end
