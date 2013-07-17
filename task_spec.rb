@@ -7,15 +7,7 @@ describe Task do
   let(:description) { "Walk the giraffe" }
   let(:task)        { Task.new(description) }
 
-  describe "#initialize" do
-    it "takes a description for its first argument" do
-      Task.new("Feed the parakeet").should be_an_instance_of Task
-    end
-
-    it "requires one argument" do
-      expect { Task.new }.to raise_error(ArgumentError)
-    end
-  end
+  
 
   describe "#description" do
     it "returns the correct description for the task" do
